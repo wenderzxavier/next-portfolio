@@ -1,7 +1,21 @@
 import Link from "next/link";
+import Head from "next/head";
+import Router from "next/router";
+import NProgress from "nprogress";
+
+Router.onRouteChangeStart = (url) => {
+  console.log(url);
+  NProgress.start();
+};
+
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
 const Layout = ({ children, title }) => (
-  <div>
+  <div className="root">
+    <Head>
+      <title>NextPortfolio</title>
+    </Head>
     <header>
       <Link href="/">
         <a>Home</a>
@@ -12,12 +26,15 @@ const Layout = ({ children, title }) => (
       <Link href="/hireme">
         <a>Hire Me</a>
       </Link>
+      <Link href="/blog">
+        <a>Blog</a>
+      </Link>
     </header>
     <h1>{title}</h1>
     {children}
     <footer>&copy; {new Date().getFullYear()}</footer>
     <style jsx>{`
-      :root {
+      .root {
         display: flex;
         justify-content: center;
         align-items: center;
