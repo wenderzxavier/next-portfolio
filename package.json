@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "next build",
+    "export": "next export",
+    "deploy": "cd out && now --public",
     "dev": "next"
   },
   "keywords": [],
